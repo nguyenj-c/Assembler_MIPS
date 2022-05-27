@@ -1,0 +1,20 @@
+addi $t2, $zero, 10 #i
+addi $t1, $zero, 3 #A
+# registre : $t0
+
+addi $t0, $t2, 0
+boucle :
+    beq $t0, 0, Fin
+    addi $t2, $t0, 0 #sauver indice
+    addi $t0, $t1, 0 #charger A
+    addi $t0, $t0, 1 #inc A
+    addi $t1, $t0, 0 # sauver A (A+1)
+    addi $t0, $t2, 0 #recharger indice
+    addi $t0, $t0, -1 # decr indice
+    j boucle
+Fin :
+    addi $a0, $t1, 0
+    addi $v0, $zero, 1
+    syscall
+    addi, $v0, $zero, 10
+    syscall
